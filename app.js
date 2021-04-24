@@ -1,7 +1,8 @@
 //initiate variables
-var gameState, doorRemaining, doorSelected, hostSelected, doorSelectedMessage, doorRemainingMessage;
+var gameState, doorRemaining, doorSelected, hostSelected, doorSelectedMessage, doorRemainingMessage, winRatio;
 const consoleBody = document.getElementById('console');
-
+var gamesPlayed = 0;
+var gamesWon = 0;
 //on game-start modal close, start game
 $('#game-start-modal').on('hidden.bs.modal', function () {
     const gameBodyClassArray = document.querySelector(".hide");
@@ -9,6 +10,8 @@ $('#game-start-modal').on('hidden.bs.modal', function () {
     const instructions = document.querySelector(".start-body");
     instructions.classList.add("hide");
     //initiate variables
+    gamesPlayed += 1;
+    gamesPlayed === 1 ? winRatio = 0 : winRatio = gamesWon/(gamesPlayed-1);
     gameState = 1; //1=start of game, 2 = 2nd stage
     winningDoor = Math.floor(Math.random() * 3) + 1;
     doorRemaining = 0;
@@ -25,6 +28,11 @@ $('#game-start-modal').on('hidden.bs.modal', function () {
     document.querySelector(`input.door-1`).value = `Door 1 - Pick me`;
     document.querySelector(`input.door-2`).value = `Door 2 - Pick me`;
     document.querySelector(`input.door-3`).value = `Door 3 - Pick me`;
+    document.getElementById('score-body').innerHTML = `
+    <h3 class="text-center">Score</h3>
+    <h5>Total Games Played: ${gamesPlayed-1}</h5>
+    <h5>Games Won: ${gamesWon}</h5>
+    <h5>Win Ratio: ${winRatio.toFixed(2)}</h5>`;
 });
 
 //event listener for click in door area
@@ -64,15 +72,7 @@ document.getElementById('door-div').addEventListener("click", function (e) {
             initiateStage2();
         } else if (gameState === 2) {
             doorRemaining = thirdDoorSelector(doorSelected, hostSelected);
-            if (doorSelected === winningDoor) {
-                //winning modal
-                console.log("you won");
-                gameResult("win");               
-            } else if (doorSelected !== winningDoor && doorSelected !== hostSelected) {
-                //losing modal
-                console.log("you lost");
-                gameResult("loss");
-            }
+            doorSelected === winningDoor ? gameResult('win') : gameResult('loss');
         }
     }
 });
@@ -101,9 +101,11 @@ function initiateStage2(eventData) {
 }
 
 function gameResult(result) {
-    console.log(`door selected finally is: ${doorSelected}`);
-    console.log(`door remaining finally is: ${doorRemaining}`);
+    // console.log(`door selected finally is: ${doorSelected}`);
+    // console.log(`door remaining finally is: ${doorRemaining}`);
+    gameState = 0;
     if (result === 'win') {
+        gamesWon += 1;
         message = 'Congrats! You Win!!!'
         doorSelectedMessage = 'Time to Party!!!';
         doorRemainingMessage = 'I will miss you.';
