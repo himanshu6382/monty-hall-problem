@@ -8,6 +8,7 @@
     <title>Door Game</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -18,24 +19,56 @@
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <div class="container-lg start-body">
+        <h3>Rules:</h3>
+        <p>One of the doors below has a a barrel of petrol behind it. The other two will give you lemons.</p>
+        <p>You pick one door.</p>
+        <p>The host, who knows what is behind which door... will mess with you further.</p>
+        <input type="submit" id="button-for-start" value="Start Game" class="btn-block btn btn-primary"
+            data-bs-toggle="modal" data-bs-target="#game-start-modal">
+    </div>
+    <div class="container hide">
         <div class="row">
             <div id="game-body" class="col-sm-9">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
                             <div id="console" class="card-body">
-                                <h3 class="text-center">Console</h3>
+                                <!-- Populate console messages in javascript -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    
-                        <div class="col-sm-4">Door 1</div>
-                        <div class="col-sm-4">Door 2</div>
-                        <div class="col-sm-4">Door 3</div>
-                    
+                <div class="row" id="door-div">
+
+                    <div id="door1" class="col-sm-4 door-panel">
+                        <div class="row col-sm-12 door-panel-btn-div">
+                            <input type="submit" value="Door 1 - Pick Me"
+                                class="door-1 door-btn btn-block btn btn-primary">
+                        </div>
+                        <div class="row col-sm-12">
+                            <img class="door-image door-1" src="images/door1.png" alt="">
+                        </div>
+                    </div>
+                    <div id="door1" class="col-sm-4 door-panel">
+                        <div class="row col-sm-12 door-panel-btn-div">
+                            <input type="submit" value="Door 2 - Pick Me"
+                                class="door-2 door-btn btn-block btn btn-primary">
+                        </div>
+                        <div class="row col-sm-12">
+                            <img class="door-image door-2" src="images/door1.png" alt="">
+                        </div>
+                    </div>
+                    <div id="door1" class="col-sm-4 door-panel">
+                        <div class="row col-sm-12 door-panel-btn-div">
+                            <input type="submit" value="Door 3 - Pick Me"
+                                class="door-3 door-btn btn-block btn btn-primary">
+                        </div>
+                        <div class="row col-sm-12">
+                            <img class="door-image door-3" src="images/door1.png" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="score-body" class="col-sm-3">
@@ -44,5 +77,50 @@
         </div>
     </div>
 </body>
+
+<!-- Modal for game launch -->
+<div class="modal fade" id="game-start-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Let's Go!!!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <p>Pick a door!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Stage 2 instruction -->
+<div class="modal fade" id="stage2-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Good Choice! Maybe?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body stage2-message">
+                <!-- messages for stage 2 instructions in javascript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"></script>
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
 
 </html>

@@ -1,0 +1,28 @@
+#console {
+    background-color: black;
+    color: yellowgreen;
+    height: 260px;
+}
+
+.door-panel {
+    margin-top: 10px;
+    ;
+}
+
+.door-panel-btn-div {
+    margin-bottom: 20px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.hide {
+    display: none;
+}
+
+.door-image:hover {
+    cursor: pointer;
+}
