@@ -1,5 +1,5 @@
 //initiate variables
-var gameState, doorRemaining, doorSelected, hostSelected, doorSelectedMessage, doorRemainingMessage, winRatio;
+var gameState, doorRemaining, doorSelected, hostSelected, doorSelectedMessage, doorRemainingMessage, doorSelectedImage, doorRemainingImage, winRatio;
 const consoleBody = document.getElementById('console');
 var gamesPlayed = 0;
 var gamesWon = 0;
@@ -28,6 +28,11 @@ $('#game-start-modal').on('hidden.bs.modal', function () {
     document.querySelector(`input.door-1`).value = `Door 1 - Pick me`;
     document.querySelector(`input.door-2`).value = `Door 2 - Pick me`;
     document.querySelector(`input.door-3`).value = `Door 3 - Pick me`;
+    let doorsImages = document.querySelectorAll(`img.door-image`);
+    doorsImages.forEach(elem => {
+        elem.src = 'images/wooden-door-1.jpg';
+        elem.classList.remove('lemon-treasure');
+    });
     document.getElementById('score-body').innerHTML = `
     <h3 class="text-center">Score</h3>
     <h5>Total Games Played: ${gamesPlayed-1}</h5>
@@ -97,6 +102,10 @@ function initiateStage2(eventData) {
     <p>You have to choose...</p>
     <p>Stay with the door you chose? Or switch to Door ${doorRemaining}?</p>
     <p>Choose wisely...</p>`;
+    //code to insert lemon image in host selected door
+    let hostSelectedDoorElement = document.querySelector(`img.door-${hostSelected}`);
+    hostSelectedDoorElement.src = `images/lemon-1.jpg`;
+    hostSelectedDoorElement.classList.add('lemon-treasure');
     doorSelected = 0;
 }
 
@@ -109,10 +118,14 @@ function gameResult(result) {
         message = 'Congrats! You Win!!!'
         doorSelectedMessage = 'Time to Party!!!';
         doorRemainingMessage = 'I will miss you.';
+        doorSelectedImage = `images/petrol-1.jpg`;
+        doorRemainingImage = `images/wooden-door-1.jpg`;
     } else {
         message = 'Aww, You Lose';
         doorSelectedMessage = 'I go well with tequila';
         doorRemainingMessage = 'Not your lucky day';
+        doorSelectedImage = `images/lemon-1.jpg`;
+        doorRemainingImage = `images/wooden-door-1.jpg`;
     }
     consoleBody.innerHTML = `
     <h1>${message}</h1>
@@ -120,6 +133,12 @@ function gameResult(result) {
             data-bs-toggle="modal" data-bs-target="#game-start-modal">`;
     document.querySelector(`input.door-${doorSelected}`).value = doorSelectedMessage;
     document.querySelector(`input.door-${doorRemaining}`).value = doorRemainingMessage;
+    let selectedDoorElement = document.querySelector(`img.door-${doorSelected}`);
+    let remainingDoorElement = document.querySelector(`img.door-${doorRemaining}`);
+    selectedDoorElement.src = doorSelectedImage;
+    selectedDoorElement.classList.add('lemon-treasure');
+    remainingDoorElement.src = doorRemainingImage;
+    
 }
 
 function thirdDoorSelector(door1, door2) {

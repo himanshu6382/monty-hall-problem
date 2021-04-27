@@ -26,3 +26,13 @@ img {
 .door-image:hover {
     cursor: pointer;
 }
+
+.door-image {
+    max-width: 70%;
+    height: auto;
+}
+
+.lemon-treasure {
+    max-width: 90%;
+    height: auto;
+}
