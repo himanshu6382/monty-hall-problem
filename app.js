@@ -44,8 +44,8 @@ document.getElementById('door-div').addEventListener("click", function (e) {
             doorSelected = i;
         }
     }
-    // proceed with game only if door was clicked
-    if (doorSelected != 0) {
+    // proceed with game only if door was clicked. at the start, hostSelected = 0 so random clicks won't be allowed. In stage 2, user shouldn't click on host selected door
+    if (doorSelected != hostSelected) {
         if (gameState === 1) {
             //code for the first stage of the game
             gameState = 2; //advance game state to the next stage
