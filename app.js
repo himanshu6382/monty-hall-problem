@@ -1,5 +1,5 @@
 //initiate variables
-var gameState, doorRemaining, doorSelected, hostSelected, doorSelectedMessage, doorRemainingMessage, winRatio;
+var gameState, doorRemaining, doorSelected, hostSelected, doorSelectedMessage, doorRemainingMessage, doorSelectedClass, doorRemainingClass, doorSelectedImage, doorRemainingImage, winRatio;
 const consoleBody = document.getElementById('console');
 var gamesPlayed = 0;
 var gamesWon = 0;
@@ -25,9 +25,28 @@ $('#game-start-modal').on('hidden.bs.modal', function () {
     consoleBody.innerHTML = `
     <h3 class="text-center">Console</h3>
     <p>Pick a Door</p>`;
+    let doorButtons = document.querySelectorAll(`input.door-btn`);
+    // let i = 0;
+    // doorButtons.forEach(elem => {
+    //     i += 1;
+    //     elem.value = `Door ${i} - Pick me`;
+    //     elem.classList.remove('btn-success', 'btn-danger', 'btn-primary', 'btn-secondary');
+    //     elem.classList.add('btn-primary');
+    // });
     document.querySelector(`input.door-1`).value = `Door 1 - Pick me`;
+    document.querySelector(`input.door-1`).classList.remove('btn-success', 'btn-danger', 'btn-primary', 'btn-secondary');
+    document.querySelector(`input.door-1`).classList.add('btn-primary');
     document.querySelector(`input.door-2`).value = `Door 2 - Pick me`;
+    document.querySelector(`input.door-2`).classList.remove('btn-success', 'btn-danger', 'btn-primary', 'btn-secondary');
+    document.querySelector(`input.door-2`).classList.add('btn-primary');
     document.querySelector(`input.door-3`).value = `Door 3 - Pick me`;
+    document.querySelector(`input.door-3`).classList.remove('btn-success', 'btn-danger', 'btn-primary', 'btn-secondary');
+    document.querySelector(`input.door-3`).classList.add('btn-primary');
+    let doorsImages = document.querySelectorAll(`img.door-image`);
+    doorsImages.forEach(elem => {
+        elem.src = 'images/wooden-door-1.jpg';
+        elem.classList.remove('lemon-treasure');
+    });
     document.getElementById('score-body').innerHTML = `
     <h3 class="text-center">Score</h3>
     <h5>Total Games Played: ${gamesPlayed-1}</h5>
@@ -90,6 +109,9 @@ function initiateStage2(eventData) {
     document.querySelector(`input.door-${doorSelected}`).value = `Door ${doorSelected} - Stay with me!`;
     document.querySelector(`input.door-${doorRemaining}`).value = `Door ${doorRemaining} - Switch to me!`;
     document.querySelector(`input.door-${hostSelected}`).value = `Door ${hostSelected} - Lemon Here`;
+    document.querySelector(`input.door-${hostSelected}`).classList.add("btn-secondary");
+    document.querySelector(`input.door-${hostSelected}`).classList.remove("btn-primary");
+
     consoleBody.innerHTML = `
     <h3 class="text-center">Console</h3>
     <p>You Selected Door ${doorSelected}</p>
@@ -97,6 +119,10 @@ function initiateStage2(eventData) {
     <p>You have to choose...</p>
     <p>Stay with the door you chose? Or switch to Door ${doorRemaining}?</p>
     <p>Choose wisely...</p>`;
+    //code to insert lemon image in host selected door
+    let hostSelectedDoorElement = document.querySelector(`img.door-${hostSelected}`);
+    hostSelectedDoorElement.src = `images/lemon-1.jpg`;
+    hostSelectedDoorElement.classList.add('lemon-treasure');
     doorSelected = 0;
 }
 
@@ -108,18 +134,36 @@ function gameResult(result) {
         gamesWon += 1;
         message = 'Congrats! You Win!!!'
         doorSelectedMessage = 'Time to Party!!!';
+        doorSelectedClass = 'btn-success';
         doorRemainingMessage = 'I will miss you.';
+        doorRemainingClass = 'btn-primary';
+        doorSelectedImage = `images/petrol-1.jpg`;
+        doorRemainingImage = `images/wooden-door-1.jpg`;
     } else {
         message = 'Aww, You Lose';
         doorSelectedMessage = 'I go well with tequila';
+        doorSelectedClass = 'btn-danger';
         doorRemainingMessage = 'Not your lucky day';
+        doorRemainingClass = 'btn-primary';
+        doorSelectedImage = `images/lemon-1.jpg`;
+        doorRemainingImage = `images/wooden-door-1.jpg`;
     }
     consoleBody.innerHTML = `
     <h1>${message}</h1>
     <input type="submit" id="restart" value="Replay the Game" class="btn-block btn btn-primary"
             data-bs-toggle="modal" data-bs-target="#game-start-modal">`;
     document.querySelector(`input.door-${doorSelected}`).value = doorSelectedMessage;
+    document.querySelector(`input.door-${doorSelected}`).classList.remove('btn-primary');
+    document.querySelector(`input.door-${doorSelected}`).classList.add(doorSelectedClass);
     document.querySelector(`input.door-${doorRemaining}`).value = doorRemainingMessage;
+    document.querySelector(`input.door-${doorRemaining}`).classList.remove('btn-primary');
+    document.querySelector(`input.door-${doorRemaining}`).classList.add(doorRemainingClass);
+    let selectedDoorElement = document.querySelector(`img.door-${doorSelected}`);
+    let remainingDoorElement = document.querySelector(`img.door-${doorRemaining}`);
+    selectedDoorElement.src = doorSelectedImage;
+    selectedDoorElement.classList.add('lemon-treasure');
+    remainingDoorElement.src = doorRemainingImage;
+    
 }
 
 function thirdDoorSelector(door1, door2) {

@@ -26,3 +26,26 @@ img {
 .door-image:hover {
     cursor: pointer;
 }
+
+.door-image {
+    max-width: 70%;
+    height: auto;
+}
+
+.lemon-treasure {
+    max-width: 90%;
+    height: auto;
+}
+
+.host-selected-button {
+    background-color: grey;
+    color: white;
+}
+
+.winning-button {
+    background-color: chartreuse;
+}
+
+.loosing-button {
+    background-color: red;
+}
