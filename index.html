@@ -35,7 +35,8 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div id="console" class="card-body">
-                                <!-- Populate console messages in javascript -->
+                                <h3 class="text-center">Console</h3>
+                                <p>Pick a Door</p>
                             </div>
                         </div>
                     </div>
@@ -72,6 +73,8 @@
                 </div>
             </div>
             <div id="score-body" class="col-sm-3">
+                <input type="submit" id="simulation" value="Run Simulation" class="btn-block btn btn-primary"
+            data-bs-toggle="modal" data-bs-target="#simulation-inputs-modal">
             </div>
         </div>
     </div>
@@ -83,7 +86,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Let's Go!!!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <p>Pick a door!</p>
@@ -101,7 +104,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="">Good Choice! Maybe?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body stage2-message">
                 <!-- messages for stage 2 instructions in javascript -->
@@ -113,6 +116,46 @@
     </div>
 </div>
 
+<!-- modal for simulation inputs -->
+<div class="modal fade" id="simulation-inputs-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Provide simulation inputs</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="container modal-body stage2-message">
+                <h6 class="text-danger">Note: You will lose your game progress</h6>
+                <hr>
+                <form id="simulator-form" action="">
+                    <div class="form-group row">
+                        <label for="gameCount" class="col-sm-6 col-form-label">Number of Games to simulate</label>
+                        <div class="col-sm-2">
+                          <input type="number" id="gameCount" >
+                        </div>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="stage2Choice" id="always-stay" value="always-stay" checked>
+                        <label class="form-check-label" for="always-stay">
+                          Always stay with the door previously selected
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="stage2Choice" id="always-switch" value="always-switch">
+                        <label class="form-check-label" for="always-switch">
+                          Always switch to the door that is not selected and un-opened
+                        </label>
+                      </div>
+                      <hr>
+                      <button type="submit" class="btn btn-primary">Run Simulation</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="

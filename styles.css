@@ -49,3 +49,7 @@ img {
 .loosing-button {
     background-color: red;
 }
+
+#simulation {
+    margin-top: 10px;
+}
