@@ -28,7 +28,7 @@ img {
 }
 
 .door-image {
-    max-width: 70%;
+    max-width: 50%;
     height: auto;
 }
 
@@ -40,14 +40,6 @@ img {
 .host-selected-button {
     background-color: grey;
     color: white;
-}
-
-.winning-button {
-    background-color: chartreuse;
-}
-
-.loosing-button {
-    background-color: red;
 }
 
 #simulation {
