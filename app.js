@@ -4,15 +4,6 @@ var gamesWon = 0;
 var gameDoors; //this will hold the winning door and host selected door.
 var gameStage = 1; //=1, when start of game, where game selects door; =2, when host shows a loosing door and asks gamer for final choice; =3, when game ends 
 
-
-//game start modal
-$('#game-start-modal').on('hidden.bs.modal', function () {
-    const gameBodyClassArray = document.querySelector(".hide");
-    gameBodyClassArray.classList.remove("hide");
-    const instructions = document.querySelector(".start-body");
-    instructions.classList.add("hide");
-});
-
 //simulator
 document.getElementById('simulator-form').addEventListener('submit', function(e) {
     gameStage = 1;
@@ -27,7 +18,7 @@ document.getElementById('simulator-form').addEventListener('submit', function(e)
         if (alwaysStay) {
             gameResult = determineResult(inputDoor); //gamer plays with the original choice
             //console.log(`game no. ${gameIter}, Door Selected: ${inputDoor}, Winning Door: ${gameDoors.winningDoor}`);
-            //console.log(`Game Result: ${gameResult}`); //keep this logs to audit results
+            //console.log(`Game Result: ${gameResult}`); //uncomment these two lines to check individual simulationr results
         } else {
             let switchedDoor = thirdDoorSelector(inputDoor, gameDoors.hostDoor); //gamer switches to the door he has not chosen, and is still unopened
             gameResult = determineResult(switchedDoor);  
@@ -143,6 +134,7 @@ function initiateStage2UI(doorSelected) {
     //modal to give stage 2 instructions
     modalBody.innerHTML = `
     <p>You Selected Door ${doorSelected}</p>
+    <p>The host knows what is behind each door</p>
     </p>The host shows you that Door ${gameDoors.hostDoor} has a lemon behind </p>
     <p>You have to choose...</p>
     <p>Stay with the door you chose?</p>
@@ -157,7 +149,7 @@ function initiateStage2UI(doorSelected) {
     document.getElementById('console').innerHTML = `
     <h3 class="text-center">Console</h3>
     <p>You Selected Door ${doorSelected}</p>
-    </p>The host shows you that Door ${gameDoors.hostDoor} has a lemon behind </p>
+    <p>The host, who knows what's behind each door, shows you that Door ${gameDoors.hostDoor} has a lemon behind </p>
     <p>You have to choose...</p>
     <p>Stay with the door you chose? Or switch to Door ${doorRemaining}?</p>
     <p>Choose wisely...</p>`;
@@ -236,6 +228,8 @@ function ScoreboardUi() {
 function resetUi() {
     document.getElementById('console').innerHTML = `
             <h3 class="text-center">Console</h3>
+            <p>There are 3 doors</p>
+            <p>There is a treasure behind one of them, and lemons behind other two</p>
             <p>Pick a Door</p>`;
     let doorButtons = document.querySelectorAll(`input.door-btn`);
     let i = 0;

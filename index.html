@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Door Game</title>
+    <title>Monty Hall Problem</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
@@ -15,20 +15,12 @@
     <div class="container-lg">
         <div class="card">
             <div class="card-body">
-                <h1 class="text-center">Lucky Door Game</h1>
+                <h1 class="text-center">Monty Hall Problem</h1>
             </div>
         </div>
     </div>
 
-    <div class="container-lg start-body">
-        <h3>Rules:</h3>
-        <p>One of the doors below has a a barrel of petrol behind it. The other two will give you lemons.</p>
-        <p>You pick one door.</p>
-        <p>The host, who knows what is behind which door... will mess with you further.</p>
-        <input type="submit" id="button-for-start" value="Start Game" class="btn-block btn btn-primary"
-            data-bs-toggle="modal" data-bs-target="#game-start-modal">
-    </div>
-    <div class="container hide">
+    <div class="container">
         <div class="row">
             <div id="game-body" class="col-sm-9">
                 <div class="row">
@@ -36,6 +28,8 @@
                         <div class="card">
                             <div id="console" class="card-body">
                                 <h3 class="text-center">Console</h3>
+                                <p>There are 3 doors</p>
+                                <p>There is a treasure behind one of them, and lemons behind other two</p>
                                 <p>Pick a Door</p>
                             </div>
                         </div>

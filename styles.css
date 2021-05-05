@@ -19,10 +19,6 @@ img {
     margin-right:auto;
 }
 
-.hide {
-    display: none;
-}
-
 .door-image:hover {
     cursor: pointer;
 }
